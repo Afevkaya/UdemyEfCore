@@ -18,8 +18,11 @@ public class AppDbContext: DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Fluent API
-        modelBuilder.Entity<Product>().ToTable("ProductTBB", "productstbb");
-        modelBuilder.Entity<Product>().HasKey(p => p.Id);
+        // modelBuilder.Entity<Product>().ToTable("ProductTBB", "productstbb");
+        // modelBuilder.Entity<Product>().HasKey(p => p.Id);
+        // modelBuilder.Entity<Product>().Property(x => x.Name).IsRequired();
+        // modelBuilder.Entity<Product>().Property(x => x.Name).HasMaxLength(100);
+        modelBuilder.Entity<Product>().Property(x => x.Name).HasMaxLength(100).IsFixedLength();
         base.OnModelCreating(modelBuilder);
     }
 
