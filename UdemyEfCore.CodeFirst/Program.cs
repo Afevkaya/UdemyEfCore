@@ -9,11 +9,42 @@ using UdemyEfCore.CodeFirst.Dal;
 // Modified --> EfCore tarafından herhangi bir property'si değiştirilen data için verilen state.
 // Deleted --> EfCore tarafından silinen data için verilen state
 // Detached --> EfCore tarafından tracke edilmeyen datalar için verdiği state
-
+// AsNoTracking metod --> Dbden gelen dataların memory'de track edilmememsini sağlar.
+// ChangeTracker property --> EfCore tarafından track edilen datalar üzerinde state'i değiştirilmiş datalara erişmeyi sağlar
+// ContextId --> Proje de birden fazla Context instance'ı(Context class örneği) varsa bunları birbirinden ayırmak için kullanılır. Unique değerdir.
 
 Initializer.Build();
 using (var _context = new AppDbContext())
 {
+    // ContextId
+    // Console.WriteLine($"ContexId: {_context.ContextId}");
+    
+    
+    // ChangeTracker property
+    // var products = await _context.Products.ToListAsync();
+    // _context.Products.Add(new() {Name = "Kalem 5", Price = 500, Stock = 500, Barcode = "567"});
+    // _context.Products.Add(new() {Name = "Kalem 6", Price = 600, Stock = 600, Barcode = "678"});
+    // _context.Products.Add(new() {Name = "Kalem 7", Price = 700, Stock = 700, Barcode = "789"});
+    // _context.SaveChanges();
+
+
+    // var products = await _context.Products.AsNoTracking().ToListAsync();
+    // products.ForEach(p =>
+    // {
+    //     var state = _context.Entry(p).State;
+    //     Console.WriteLine($"{p.Id}: {p.Name} - {p.Price} - {p.Stock} - state: {state}");
+    // });
+
+
+    // AsNoTracking metod
+    // var products = await _context.Products.AsNoTracking().ToListAsync();
+    // products.ForEach(p =>
+    // {
+    //     var state = _context.Entry(p).State;
+    //     Console.WriteLine($"{p.Id}: {p.Name} - {p.Price} - {p.Stock} - state: {state}");
+    // });
+
+
     // Detached
     // EfCore tarafından Detached olarak işaretlenen data üzerinde yapılan hiçbir değişiklik db ye yansıtılmaz.
     // var product = await _context.Products.FirstAsync();
@@ -25,6 +56,7 @@ using (var _context = new AppDbContext())
     // await _context.SaveChangesAsync();
     // Console.WriteLine($"state after savechanges: {_context.Entry(product).State}");
 
+
     // Deleted
     // var product = await _context.Products.FirstAsync();
     // Console.WriteLine($"ilk state: {_context.Entry(product).State}");
@@ -33,6 +65,7 @@ using (var _context = new AppDbContext())
     // Console.WriteLine($"son state: {_context.Entry(product).State}");
     // await _context.SaveChangesAsync();
     // Console.WriteLine($"state after savechanges: {_context.Entry(product).State}");
+
 
     // Updated
     // var product = await _context.Products.FirstAsync();
@@ -43,6 +76,7 @@ using (var _context = new AppDbContext())
     // Console.WriteLine($"son state: {_context.Entry(product).State}");
     // await _context.SaveChangesAsync();
     // Console.WriteLine($"state after savechanges: {_context.Entry(product).State}");
+
 
     // Added
     // Product newProduct = new() {Name = "Kalem 4", Price = 400, Stock = 400, Barcode = "456"};
