@@ -19,6 +19,10 @@ using UdemyEfCore.CodeFirst.Dal;
 // SingletOrDefault() metod --> Şarta uygun datayı getirir. Birden fazla data var ise hata fırlatır. Şartın sağlanmadığı durumlarda default değer döner. Async metodu bulunmaktadır.
 // Where() metod --> Şarta uygun bir liste döner. 
 // Find() metod --> PrimaryKey alanına göre bir arama yapar ve tek bir data döner. Async metodu bulunmaktadır.
+// EfCore Configuration --> Kodlama tarafındaki entitylerin db'ye nasıl yansıtılacağı ile ilgilidir. Üç yolu vardır. Convesions(default), Fleunt API(metodlar ile), Data Annotations Attributes(Attribütler ile)
+
+
+
 Initializer.Build();
 using (var _context = new AppDbContext())
 {

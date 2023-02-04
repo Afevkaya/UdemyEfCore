@@ -14,6 +14,15 @@ public class AppDbContext: DbContext
         optionsBuilder.UseSqlServer(Initializer.Configuration.GetConnectionString("SqlCon"));
     }
 
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        // Fluent API
+        modelBuilder.Entity<Product>().ToTable("ProductTBB", "productstbb");
+        modelBuilder.Entity<Product>().HasKey(p => p.Id);
+        base.OnModelCreating(modelBuilder);
+    }
+
     // SaveChanges metod override
     // public override int SaveChanges()
     // {
