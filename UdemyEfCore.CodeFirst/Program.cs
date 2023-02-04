@@ -13,17 +13,36 @@ using UdemyEfCore.CodeFirst.Dal;
 // ChangeTracker property --> EfCore tarafından track edilen datalar üzerinde state'i değiştirilmiş datalara erişmeyi sağlar
 // ContextId --> Proje de birden fazla Context instance'ı(Context class örneği) varsa bunları birbirinden ayırmak için kullanılır. Unique değerdir.
 // Update() metod --> EfCore tarafından track edilmeyen datalar üzerinde bir değişiklik yapıldığında db'ye datayı yansıtmak için kullanılır.
-
+// First() metod --> Şarta uygun ilk datayı getirir. Yoksa exception fırlatır. Async metodu bulunmaktadır.
+// FirstOrDefault() metod --> Şarta uygun ilk datayı getirir. Yoksa geriye null döner. Async metodu bulunmaktadır.
+// Single() metod --> Şarta uygun datayı getirir. Birden fazla data var ise veya data yok ise hata fırlatır. Async metodu bulunmaktadır.
+// SingletOrDefault() metod --> Şarta uygun datayı getirir. Birden fazla data var ise hata fırlatır. Şartın sağlanmadığı durumlarda default değer döner. Async metodu bulunmaktadır.
+// Where() metod --> Şarta uygun bir liste döner. 
+// Find() metod --> PrimaryKey alanına göre bir arama yapar ve tek bir data döner. Async metodu bulunmaktadır.
 Initializer.Build();
 using (var _context = new AppDbContext())
 {
-    
+    // Find() metod
+    // var product = _context.Products.Find(3);
+
+    // Where() metod
+    // var product = await _context.Products.Where(p => p.Id > 3 || p.Price > 500).ToListAsync();
+
+    // SingleOrDefault() metod
+    // var product = _context.Products.SingleOrDefault(x => x.Id == 100);
+    // Single() metod
+    // var product = _context.Products.Single(x => x.Id == 100);
+
+    // FirstOrDefault() metod
+    // var product = _context.Products.FirstOrDefault(x => x.Id == 100, new Product());
+    // First() metod
+    // var product = _context.Products.First(x => x.Id == 100);
 
 
     // ContextId
     // Console.WriteLine($"ContexId: {_context.ContextId}");
-    
-    
+
+
     // ChangeTracker property
     // var products = await _context.Products.ToListAsync();
     // _context.Products.Add(new() {Name = "Kalem 5", Price = 500, Stock = 500, Barcode = "567"});
