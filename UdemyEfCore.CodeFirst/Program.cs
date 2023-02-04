@@ -9,13 +9,17 @@ using UdemyEfCore.CodeFirst.Dal;
 // Modified --> EfCore tarafından herhangi bir property'si değiştirilen data için verilen state.
 // Deleted --> EfCore tarafından silinen data için verilen state
 // Detached --> EfCore tarafından tracke edilmeyen datalar için verdiği state
-// AsNoTracking metod --> Dbden gelen dataların memory'de track edilmememsini sağlar.
+// AsNoTracking() metod --> Dbden gelen dataların memory'de track edilmememsini sağlar.
 // ChangeTracker property --> EfCore tarafından track edilen datalar üzerinde state'i değiştirilmiş datalara erişmeyi sağlar
 // ContextId --> Proje de birden fazla Context instance'ı(Context class örneği) varsa bunları birbirinden ayırmak için kullanılır. Unique değerdir.
+// Update() metod --> EfCore tarafından track edilmeyen datalar üzerinde bir değişiklik yapıldığında db'ye datayı yansıtmak için kullanılır.
 
 Initializer.Build();
 using (var _context = new AppDbContext())
 {
+    
+
+
     // ContextId
     // Console.WriteLine($"ContexId: {_context.ContextId}");
     
