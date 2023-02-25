@@ -18,8 +18,13 @@ public class AppDbContext: DbContext
     // Fluent Api
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // One-to-Many RelationShip
         modelBuilder.Entity<Category>().HasMany(x => x.Products).WithOne(x => x.Category)
             .HasForeignKey(x => x.CategoryId);
+
+        // One-to-One RelationShip
+        modelBuilder.Entity<Product>().HasOne(x => x.ProductFeature).WithOne(x => x.Product)
+            .HasForeignKey<ProductFeature>(x => x.ProductId);
         base.OnModelCreating(modelBuilder);
     }
 }
