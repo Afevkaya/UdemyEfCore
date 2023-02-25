@@ -24,7 +24,7 @@ public class AppDbContext: DbContext
 
         // One-to-One RelationShip
         modelBuilder.Entity<Product>().HasOne(x => x.ProductFeature).WithOne(x => x.Product)
-            .HasForeignKey<ProductFeature>(x => x.ProductId);
+            .HasForeignKey<ProductFeature>(x => x.Id);
         base.OnModelCreating(modelBuilder);
     }
 }

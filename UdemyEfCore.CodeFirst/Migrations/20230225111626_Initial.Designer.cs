@@ -11,7 +11,7 @@ using UdemyEfCore.CodeFirst.Dal;
 namespace UdemyEfCore.CodeFirst.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230225110759_Initial")]
+    [Migration("20230225111626_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,10 +74,7 @@ namespace UdemyEfCore.CodeFirst.Migrations
             modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.ProductFeature", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Color")
                         .IsRequired()
@@ -86,16 +83,10 @@ namespace UdemyEfCore.CodeFirst.Migrations
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Width")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId")
-                        .IsUnique();
 
                     b.ToTable("ProductFeature");
                 });
@@ -115,7 +106,7 @@ namespace UdemyEfCore.CodeFirst.Migrations
                 {
                     b.HasOne("UdemyEfCore.CodeFirst.Dal.Product", "Product")
                         .WithOne("ProductFeature")
-                        .HasForeignKey("UdemyEfCore.CodeFirst.Dal.ProductFeature", "ProductId")
+                        .HasForeignKey("UdemyEfCore.CodeFirst.Dal.ProductFeature", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
