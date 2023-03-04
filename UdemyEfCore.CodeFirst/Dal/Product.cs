@@ -9,10 +9,9 @@ public class Product
     public int Stock { get; set; }
     public int Barcode { get; set; }
     public int CategoryId { get; set; }
-    
     // Navigation Property
     public Category Category { get; set; }
     
     //Navigation Property
-    public ProductFeature ProductFeature { get; set; }
+    // public ProductFeature ProductFeature { get; set; }
 }
