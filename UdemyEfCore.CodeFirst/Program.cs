@@ -6,6 +6,77 @@ using UdemyEfCore.CodeFirst.Dal;
 
 Initializer.Build();
 
+// #region Delete Behavior
+//
+// using (AppDbContext _context = new())
+// {
+//     // Cascade --> EfCore'un default davranışıdır. Parent data silindiği zaman child datalarda var ise silinir. Db de bulunan bir özelliktir.
+//     // Category category = new()
+//     // {
+//     //     Name = "Kalemler",
+//     //     Products = new()
+//     //     {
+//     //         new() {Name = "Kalem1", Price = 100, Stock = 100, Barcode = 123},
+//     //         new() {Name = "Kalem2", Price = 200, Stock = 200, Barcode = 234},
+//     //         new() {Name = "Kalem3", Price = 300, Stock = 300, Barcode = 345},
+//     //     }
+//     // };
+//     //
+//     // await _context.AddAsync(category);
+//     // var category =  await _context.Categories.FirstAsync();
+//     // _context.Categories.Remove(category);
+//     
+//     
+//     // Restrict --> Child tablodaki datalar silinmeden parent tablodaki dataları silmez hata verir.
+//     // Category category = new()
+//     // {
+//     //     Name = "Kalemler",
+//     //     Products = new()
+//     //     {
+//     //         new() {Name = "Kalem1", Price = 100, Stock = 100, Barcode = 123},
+//     //         new() {Name = "Kalem2", Price = 200, Stock = 200, Barcode = 234},
+//     //         new() {Name = "Kalem3", Price = 300, Stock = 300, Barcode = 345},
+//     //     }
+//     // };
+//     //
+//     // await _context.AddAsync(category);
+//     // var category =  await _context.Categories.FirstAsync();
+//     // var products = await _context.Products.Where(p => p.CategoryId == category.Id).ToListAsync();
+//     // _context.Products.RemoveRange(products);
+//     // _context.Categories.Remove(category);
+//     
+//     
+//     // NoAction --> EfCore hiç birşey yapmaz herşey db 'ye bırakılır.
+//     
+//     
+//     
+//     // SetNull --> EfCore parent tabloda data sildiğinde child tablodaki foreignkey sütünundaki dataları null'a set eder.
+//     // Önemli olan foreignkey datası nullable olabilmesidir. Yoksa hata verir.
+//     // Category category = new()
+//     // {
+//     //     Name = "Kalemler",
+//     //     Products = new()
+//     //     {
+//     //         new() {Name = "Kalem1", Price = 100, Stock = 100, Barcode = 123},
+//     //         new() {Name = "Kalem2", Price = 200, Stock = 200, Barcode = 234},
+//     //         new() {Name = "Kalem3", Price = 300, Stock = 300, Barcode = 345},
+//     //     }
+//     // };
+//     //
+//     // await _context.AddAsync(category);
+//     // var category =  await _context.Categories.FirstAsync();
+//     // _context.Categories.Remove(category);
+//     
+//     
+//     await _context.SaveChangesAsync();
+//     Console.WriteLine("İşlem bitti");
+// }
+//
+//
+// #endregion
+
+
+
 // #region Many-to-Many Added
 //
 // using (AppDbContext _context = new())

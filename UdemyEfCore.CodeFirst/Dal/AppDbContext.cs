@@ -27,9 +27,11 @@ public class AppDbContext: DbContext
         // modelBuilder.Entity<Category>().HasMany(x => x.Products).WithOne(x => x.Category)
         //     .HasForeignKey(x => x.CategoryId);
 
+        
         // One-to-One RelationShip
         // modelBuilder.Entity<Product>().HasOne(x => x.ProductFeature).WithOne(x => x.Product)
         //     .HasForeignKey<ProductFeature>(x => x.Id);
+        
         
         // Many-to-Many RelationShip
         // modelBuilder.Entity<Student>().HasMany(x => x.Teachers).WithMany(x => x.Students)
@@ -37,6 +39,21 @@ public class AppDbContext: DbContext
         //         "StudentTeacherManyToMany",
         //         x => x.HasOne<Teacher>().WithMany().HasForeignKey("Teacher_Id").HasConstraintName("FK__TeacherId"),
         //         x => x.HasOne<Student>().WithMany().HasForeignKey("Student_Id").HasConstraintName("FK__StudentId"));
+        
+        
+        // Delete Behavior RelationShips
+        // Cascade
+        // modelBuilder.Entity<Category>().HasMany(c => c.Products).WithOne(p => p.Category)
+        //     .HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.Cascade);
+        
+        // Restrict
+        // modelBuilder.Entity<Category>().HasMany(c => c.Products).WithOne(p => p.Category)
+        //     .HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.Restrict);
+        
+        // SetNull
+        // modelBuilder.Entity<Category>().HasMany(c => c.Products).WithOne(p => p.Category)
+        //     .HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.SetNull);
+        
         
         base.OnModelCreating(modelBuilder);
     }
