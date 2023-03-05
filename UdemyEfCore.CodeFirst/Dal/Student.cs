@@ -6,5 +6,5 @@ public class Student
     public string Name { get; set; }
     public int  Age { get; set; }
     // Navigation Property
-    public List<Teacher> Teachers { get; set; }
+    public List<Teacher> Teachers { get; set; } = new();
 }

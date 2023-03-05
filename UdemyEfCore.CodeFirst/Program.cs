@@ -6,6 +6,45 @@ using UdemyEfCore.CodeFirst.Dal;
 
 Initializer.Build();
 
+// #region Many-to-Many Added
+//
+// using (AppDbContext _context = new())
+// {
+//     // Student üzerinden teacher ekleme
+//     // Student student = new() {Name = "Ahmet Öğrenci", Age = 23};
+//     // student.Teachers.Add(new() {Name = "Ahmet Öğretmen1"});
+//     // student.Teachers.Add(new() {Name = "Ahmet Öğretmen2"});
+//     // await _context.AddAsync(student);
+//
+//     
+//     
+//     // Teacher üzerinden student ekleme
+//     // Teacher teacher = new() {Name = "Hasan Öğretmen"};
+//     // teacher.Students.AddRange(new List<Student>()
+//     // {
+//     //     new(){Name = "Hasan100", Age = 20},
+//     //     new(){Name = "Hasan200",Age = 30},
+//     // });
+//     // await _context.Teachers.AddAsync(teacher);
+//
+//     
+//     // Var olan Teacher datası üzerinden student ekleme
+//     // var teacher = await _context.Teachers.FirstAsync(t => t.Name == "Hasan Öğretmen");
+//     // teacher.Students.AddRange(new List<Student>()
+//     // {
+//     //     new() {Name = "Hasan300",Age = 23},
+//     //     new(){Name = "Hasan400", Age = 24},
+//     // });
+//     
+//     
+//     await _context.SaveChangesAsync();
+//     Console.WriteLine("Kaydedildi");
+// }
+//
+//
+// #endregion
+
+
 // #region One-to-One Added
 //
 // using (AppDbContext _context = new())

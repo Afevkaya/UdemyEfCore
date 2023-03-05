@@ -22,6 +22,33 @@ namespace UdemyEfCore.CodeFirst.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Teachers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teachers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -40,6 +67,30 @@ namespace UdemyEfCore.CodeFirst.Migrations
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentTeacher",
+                columns: table => new
+                {
+                    StudentsId = table.Column<int>(type: "int", nullable: false),
+                    TeachersId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentTeacher", x => new { x.StudentsId, x.TeachersId });
+                    table.ForeignKey(
+                        name: "FK_StudentTeacher_Students_StudentsId",
+                        column: x => x.StudentsId,
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StudentTeacher_Teachers_TeachersId",
+                        column: x => x.TeachersId,
+                        principalTable: "Teachers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -68,6 +119,11 @@ namespace UdemyEfCore.CodeFirst.Migrations
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentTeacher_TeachersId",
+                table: "StudentTeacher",
+                column: "TeachersId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -76,7 +132,16 @@ namespace UdemyEfCore.CodeFirst.Migrations
                 name: "ProductFeatures");
 
             migrationBuilder.DropTable(
+                name: "StudentTeacher");
+
+            migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "Teachers");
 
             migrationBuilder.DropTable(
                 name: "Categories");
