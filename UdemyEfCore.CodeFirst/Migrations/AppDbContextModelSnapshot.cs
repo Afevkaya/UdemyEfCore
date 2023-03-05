@@ -21,21 +21,6 @@ namespace UdemyEfCore.CodeFirst.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("StudentTeacherManyToMany", b =>
-                {
-                    b.Property<int>("Student_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Teacher_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Student_Id", "Teacher_Id");
-
-                    b.HasIndex("Teacher_Id");
-
-                    b.ToTable("StudentTeacherManyToMany");
-                });
-
             modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -50,7 +35,7 @@ namespace UdemyEfCore.CodeFirst.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.Product", b =>
@@ -81,7 +66,7 @@ namespace UdemyEfCore.CodeFirst.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.ProductFeature", b =>
@@ -101,61 +86,7 @@ namespace UdemyEfCore.CodeFirst.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductFeature");
-                });
-
-            modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.Student", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.Teacher", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Teachers");
-                });
-
-            modelBuilder.Entity("StudentTeacherManyToMany", b =>
-                {
-                    b.HasOne("UdemyEfCore.CodeFirst.Dal.Student", null)
-                        .WithMany()
-                        .HasForeignKey("Student_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK__StudentId");
-
-                    b.HasOne("UdemyEfCore.CodeFirst.Dal.Teacher", null)
-                        .WithMany()
-                        .HasForeignKey("Teacher_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK__TeacherId");
+                    b.ToTable("ProductFeatures");
                 });
 
             modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.Product", b =>

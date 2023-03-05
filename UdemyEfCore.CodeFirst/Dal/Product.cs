@@ -1,4 +1,5 @@
-﻿namespace UdemyEfCore.CodeFirst.Dal;
+﻿
+namespace UdemyEfCore.CodeFirst.Dal;
 
 // Product class
 public class Product
@@ -13,5 +14,5 @@ public class Product
     public Category Category { get; set; }
     
     //Navigation Property
-    // public ProductFeature ProductFeature { get; set; }
+    public ProductFeature ProductFeature { get; set; }
 }

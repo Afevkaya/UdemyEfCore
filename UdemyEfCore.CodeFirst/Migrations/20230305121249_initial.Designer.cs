@@ -11,7 +11,7 @@ using UdemyEfCore.CodeFirst.Dal;
 namespace UdemyEfCore.CodeFirst.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230304135644_initial")]
+    [Migration("20230305121249_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,6 +71,26 @@ namespace UdemyEfCore.CodeFirst.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.ProductFeature", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Height")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Width")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductFeatures");
+                });
+
             modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.Product", b =>
                 {
                     b.HasOne("UdemyEfCore.CodeFirst.Dal.Category", "Category")
@@ -82,9 +102,26 @@ namespace UdemyEfCore.CodeFirst.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.ProductFeature", b =>
+                {
+                    b.HasOne("UdemyEfCore.CodeFirst.Dal.Product", "Product")
+                        .WithOne("ProductFeature")
+                        .HasForeignKey("UdemyEfCore.CodeFirst.Dal.ProductFeature", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("UdemyEfCore.CodeFirst.Dal.Product", b =>
+                {
+                    b.Navigation("ProductFeature")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
